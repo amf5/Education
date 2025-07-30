@@ -59,7 +59,7 @@ public class AuthController {
 	        return authService.resentCode(email.getEmail());
 	        }
 
-	   @PostMapping("/logout")
+	   @PatchMapping("/logout")
 	   public ResponseEntity<?> logout(HttpServletRequest request) {
 	      return authService.logout(request);
 	   }
