@@ -1,5 +1,6 @@
 package com.com.Courses.controller;
 
+
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -40,6 +41,7 @@ public class AuthController {
 	
 	  @PostMapping("/login")
 	    public ResponseEntity<?> login( @RequestBody @Valid Login login) throws Exception {
+		 
 	        return authService.login(login);
 	    }
 
