@@ -201,7 +201,7 @@ cacheService.incrementAttemptCount(email, num);
 	@Override
 	public ResponseEntity<?> forgotMyPassword(String email) throws Exception {
 		User user=userRepository.findByEmail(email).orElseThrow(()->new Exception("user not found"));
-		emailService.sendVerificationEmail(email);
+		emailService.sendVerificationPassword(email);
 		return new ResponseEntity("check your email now!",HttpStatus.ACCEPTED);
 	}
 
