@@ -72,6 +72,16 @@ public class GolablException {
 	    return ResponseEntity.badRequest().body(new ErrorDto(errorMessage));
 	}
 
+	@ExceptionHandler(UserNotFoundException.class)
+	public ResponseEntity<ErrorDto>UserNotFoundExceptionHandler(UserNotFoundException ex){
+	ErrorDto errorDto=new ErrorDto();
+	errorDto.setError("Producer Exception for message");
+	
+	return new ResponseEntity(errorDto,HttpStatus.BAD_REQUEST);
+		
+	}
+	
+	
 	
 	@ExceptionHandler(ConstraintViolationException.class)
 	public  ResponseEntity<ErrorDto>handleContraintValidation(ConstraintViolationException ex)

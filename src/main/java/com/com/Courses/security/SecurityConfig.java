@@ -95,7 +95,7 @@ public class SecurityConfig {
                 .requestMatchers("/education/login",
                 		 "/education/signup",
                 		"/education/resentcode","/education/activate","/education/forgot").permitAll()
-                .requestMatchers("/user/**").hasRole("USER") 
+             //   .requestMatchers("/user/**").hasRole("USER") 
                
                 .anyRequest().authenticated()
             )

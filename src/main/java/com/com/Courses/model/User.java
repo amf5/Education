@@ -33,9 +33,38 @@ public class User {
 	
 	private String account;
 	private String image;
-	public String getImage() {
+	private String youTube;
+	private String linkedIn;
+	private String gitHub;
+	private String faceBook;
+	
+public String getImage() {
 		return image;
 	}
+	public String getYouTube() {
+	return youTube;
+}
+public void setYouTube(String youTube) {
+	this.youTube = youTube;
+}
+public String getLinkedIn() {
+	return linkedIn;
+}
+public void setLinkedIn(String linkedIn) {
+	this.linkedIn = linkedIn;
+}
+public String getGitHub() {
+	return gitHub;
+}
+public void setGitHub(String gitHub) {
+	this.gitHub = gitHub;
+}
+public String getFaceBook() {
+	return faceBook;
+}
+public void setFaceBook(String faceBook) {
+	this.faceBook = faceBook;
+}
 	public void setImage(String image) {
 		this.image = image;
 	}
