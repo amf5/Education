@@ -113,7 +113,7 @@ private final CacheServiceI cacheService;
         message.setFrom(senderEmail); 
         message.setSubject("Forgot My Password");message.setText(
         	    "Click this link to change password:\n" +
-        	    	    "http://localhost:8081/user/code?code=" + verificationCode + "&email=" + toEmail
+        	    	    "https://particular-randi-wedo-4e0f6ba7.koyeb.app//user/code?code=" + verificationCode + "&email=" + toEmail
         	    	);
  mailSender.send(message);
         cacheService.saveVerificationCode(toEmail, verificationCode);

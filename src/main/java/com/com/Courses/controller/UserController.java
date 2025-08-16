@@ -157,7 +157,7 @@ if(isValid) {
 	String token=tokenUtil.generateTokenFive(userDetails);
 	user.setToken(token);
 	userRepository.save(user);
-	URI redirectUri = URI.create("http://localhost:8081/reset-password.html?token=" + token + "&email=" + email);
+	URI redirectUri = URI.create("https://particular-randi-wedo-4e0f6ba7.koyeb.app/reset-password.html?token=" + token + "&email=" + email);
 
 
     return ResponseEntity.status(HttpStatus.FOUND)
@@ -176,14 +176,6 @@ return ResponseEntity
 
 
 
-
-
-
-@GetMapping("/check")
-public String  check(@RequestParam String email,@RequestParam String code) {
-	return "hello";
-	
-}
 
 
 
