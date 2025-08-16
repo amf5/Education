@@ -7,9 +7,6 @@ public interface CacheServiceI {
    
 
     public String getVerificationCode(String email);
-      
-  
-
     public void removeVerificationCode(String email) ; 
     Integer getAttemptCount(String email);
 

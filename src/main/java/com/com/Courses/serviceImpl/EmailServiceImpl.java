@@ -103,6 +103,29 @@ private final CacheServiceI cacheService;
     }
     
     
+    @Override
+    public void sendVerificationPasswordLink(String toEmail)  {
+        
+        String verificationCode =generateVerificationCode();
+
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(toEmail);
+        message.setFrom(senderEmail); 
+        message.setSubject("Forgot My Password");message.setText(
+        	    "Click this link to change password:\n" +
+        	    	    "http://localhost:8081/user/code?code=" + verificationCode + "&email=" + toEmail
+        	    	);
+ mailSender.send(message);
+        cacheService.saveVerificationCode(toEmail, verificationCode);
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
     
      /*   public void sendPasswordResetEmail(String toEmail, String resetToken) {

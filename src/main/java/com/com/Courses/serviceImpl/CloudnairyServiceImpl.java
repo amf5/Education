@@ -44,8 +44,72 @@ public class CloudnairyServiceImpl implements CloudnairyServiceI {
                     System.out.println("Error closing InputStream: " + e.getMessage());
                 }
             }
-        }
-    }
+        }}
+        
 
+        @Override
+        public void deleteImageByUrl(String imageUrl) throws IOException {
+            try {
+              
+                String publicId = extractPublicIdFromUrl(imageUrl);
+
+               
+                Map<String, Object> deleteResult = cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
+                System.out.println("Delete result: " + deleteResult);
+
+            } catch (Exception e) {
+                throw new RuntimeException("Cloudinary image delete failed: " + e.getMessage(), e);
+            }
+        }
+
+ 
+        private String extractPublicIdFromUrl(String imageUrl) {
+        
+            String withoutUploadPart = imageUrl.substring(imageUrl.indexOf("/upload/") + 8);
+
+      
+            if (withoutUploadPart.startsWith("v")) {
+                withoutUploadPart = withoutUploadPart.substring(withoutUploadPart.indexOf("/") + 1);
+            }
+
+   
+            int dotIndex = withoutUploadPart.lastIndexOf(".");
+            if (dotIndex != -1) {
+                withoutUploadPart = withoutUploadPart.substring(0, dotIndex);
+            }
+
+            return withoutUploadPart;
+        }
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+   
+
+	
 
 }

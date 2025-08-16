@@ -126,14 +126,19 @@ if(!user.isEmpty()) {
 		if(code.equals(account.getCode())) {
 			user.setAcctivate(true);
 			cacheService.removeVerificationCode(account.getEmail());
+			CustomerUserDetails userDetails=new CustomerUserDetails(user);
+			String jwt = tokenUtil.generateToken(userDetails);
+			user.setToken(jwt);
+			userRepository.save(user);
+			AuthResponse authResponse=new AuthResponse(user.getId(),jwt);
+			return new ResponseEntity(authResponse,HttpStatus.ACCEPTED) ;
 			
 		}
-		CustomerUserDetails userDetails=new CustomerUserDetails(user);
-		String jwt = tokenUtil.generateToken(userDetails);
-		user.setToken(jwt);
-		userRepository.save(user);
-		AuthResponse authResponse=new AuthResponse(user.getId(),jwt);
-		return new ResponseEntity(authResponse,HttpStatus.ACCEPTED) ;
+		else {
+			
+			throw new Exception("Invalid Code");
+		}
+		
 	}
 
 	
@@ -147,6 +152,7 @@ if(!user.isEmpty()) {
 	
 	@Override
 	public ResponseEntity<?> resentCode(String email) throws Exception {
+		User user=userRepository.findByEmail(email).orElseThrow(()-> new Exception("user not found"));	
 	cacheService.removeVerificationCode(email);
 	Integer num=cacheService.getAttemptCount(email);
 	if(num>=5) {
@@ -160,6 +166,9 @@ cacheService.incrementAttemptCount(email, num);
 	return new ResponseEntity ("code is sent ",HttpStatus.ACCEPTED);
 	}
 
+	
+	
+	
 	@Override
 	public ResponseEntity<?> logout(HttpServletRequest request) {
 		 try {

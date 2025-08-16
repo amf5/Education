@@ -94,7 +94,7 @@ public class SecurityConfig {
             	
                 .requestMatchers("/education/login",
                 		 "/education/signup",
-                		"/education/resentcode","/education/activate","/education/forgot").permitAll()
+                		"/education/resentcode","/education/activate","/education/forgot","/user/check","/user/code","reset-password.html").permitAll()
              //   .requestMatchers("/user/**").hasRole("USER") 
                
                 .anyRequest().authenticated()

@@ -5,4 +5,6 @@ import java.io.InputStream;
 
 public interface CloudnairyServiceI {
 	 public String uploadFileFromStream(InputStream inputStream) throws IOException; 
+	 public void deleteImageByUrl(String imageUrl) throws IOException;
+    
 }

@@ -11,10 +11,10 @@ import org.springframework.cache.annotation.EnableCaching;
 public class CoursesApplication {
 
 	public static void main(String[] args) {
-		System.out.println("API user test");
+
 
 		SpringApplication.run(CoursesApplication.class, args);
-		System.out.println("API user test");
+
 
 	}
 

@@ -24,7 +24,7 @@ public class TokenUtil {
 
 	    
 	    private static final int TOKEN_VALIDITY = 30 * 24 * 60 * 60 * 1000; 
-
+	    private static final int TOKEN_FIVE = 5 * 60 * 1000;
 
 	    
 	    public String getEmailFromToken(String token) {
@@ -133,4 +133,27 @@ public class TokenUtil {
 	                   .signWith(SignatureAlgorithm.HS256,SECRET_KEY)
 	                   .compact();
 	    }
+	    
+	    
+	    public String generateTokenFive(CustomerUserDetails userDetails) {
+	        Map<String, Object> claims = new HashMap();
+	        claims.put("userName", userDetails.getUsername());
+	        claims.put("Status", userDetails.isEnabled());
+	        claims.put("userId", userDetails.getId());
+	        List<String> roles = userDetails.getAuthorities().stream()
+	                                         .map(GrantedAuthority::getAuthority)
+	                                         .collect(Collectors.toList());
+	        claims.put("Roles", roles);
+
+	        return Jwts.builder()
+	                   .setClaims(claims)
+	                   .setSubject(userDetails.getEmail())
+	                   .setIssuedAt(new Date(System.currentTimeMillis()))
+	                   .setExpiration(new Date(System.currentTimeMillis() + TOKEN_FIVE))
+	                   .signWith(SignatureAlgorithm.HS256,SECRET_KEY)
+	                   .compact();
+	    }
+	    
+	    
+	    
 }

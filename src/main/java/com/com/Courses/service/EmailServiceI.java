@@ -8,6 +8,7 @@ public interface EmailServiceI {
 
  public void sendVerificationEmail(String toEmail)  ;
  public void sendVerificationPassword(String toEmail)  ;
+ void sendVerificationPasswordLink(String toEmail);
 	    
 	    
 	        

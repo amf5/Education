@@ -1,5 +1,6 @@
 package com.com.Courses.model;
 
+
 import java.util.List;
 
 import com.com.Courses.domain.RoleEnum;
@@ -15,6 +16,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+
 import jakarta.persistence.Table;
 
 @Entity
@@ -37,7 +39,9 @@ public class User {
 	private String linkedIn;
 	private String gitHub;
 	private String faceBook;
-	
+	/* @OneToMany(mappedBy = "student")
+	    private List<Enrollment> enrollments = new ArrayList();*/
+
 public String getImage() {
 		return image;
 	}
