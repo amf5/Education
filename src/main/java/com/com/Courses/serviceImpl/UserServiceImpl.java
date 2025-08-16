@@ -124,6 +124,8 @@ String token=null;
 		if(passwordEncoder.matches(request.getCurrentPassword(), user.getPassword())) {
 			CustomerUserDetails userDetails=new CustomerUserDetails(user);
 			token=tokenUtil.generateToken(userDetails);
+			user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+			
 			user.setToken(token);
 			}
 		else {
